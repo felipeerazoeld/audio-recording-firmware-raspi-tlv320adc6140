@@ -8,7 +8,7 @@
 ##  pip install RPi.GPIO
 ##  pip install smbus
 
-import RPi.GPIO as GPIO
+#import RPi.GPIO as GPIO
 from smbus import SMBus
 import time
 
@@ -21,14 +21,14 @@ class TLV320ADC:
         self.a_gain_db = [0.0,0.0,0.0,0.0]
         self.d_gain_db = [0.0,0.0,0.0,0.0]
         
-        self.debug=False
+        self.debug=True # False
 
-        GPIO.setwarnings(False)
-        GPIO.setmode(GPIO.BCM)
+        #GPIO.setwarnings(False)
+        #GPIO.setmode(GPIO.BCM)
         self.inv_standby_pin = 4
-        GPIO.setup(self.inv_standby_pin, GPIO.OUT)
+        #GPIO.setup(self.inv_standby_pin, GPIO.OUT)
         
-        self.i2c = SMBus(1)
+        self.i2c = SMBus(4)
 
 
         
@@ -163,8 +163,8 @@ class TLV320ADC:
             print("Addr:",ad," is ",self.addr(ad),"(", hex(self.addr(ad)),")","-> write",msg,"<", hex(msg),"> <",self.bin8(msg),">")
 
         
-        if not self.debug:
-            self.i2c.write_byte_data(self.adc_i2c_address, self.addr(ad), msg)
+        #if not self.debug:
+        self.i2c.write_byte_data(self.adc_i2c_address, self.addr(ad), msg)
         self.i2c_current[ad]=msg
         if ad in self.i2c_mod:
             del self.i2c_mod[ad]
@@ -247,13 +247,13 @@ class TLV320ADC:
 
     ## Put ADC in shutdown
     def shutdown(self):
-        GPIO.output(self.inv_standby_pin, GPIO.LOW)
+        #GPIO.output(self.inv_standby_pin, GPIO.LOW)
         time.sleep(.1)
         self.power_status={"ADC":0, 1:0, 2:0, 3:0, 4:0}
         return
 
     def startup(self):
-        GPIO.output(self.inv_standby_pin, GPIO.HIGH)  # take out of standby
+        #GPIO.output(self.inv_standby_pin, GPIO.HIGH)  # take out of standby
         time.sleep(.1)
         return
 

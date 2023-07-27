@@ -338,8 +338,9 @@ def record_sounds(adc, enc,file_path, file_count, title="Sound Recording",
     bitrate = 256 #kbits per second encoding
 
     #debug
-    soundcard = "ADCX140"
+    #soundcard = "ADCX140"
     #soundcard = "VIA"
+    soundcard = "T20"
 
     tproc = start_temp() # start getting the temps
 
@@ -521,8 +522,8 @@ if config.sections() == []:
     config['settings']["analoggain"] = "30"
     config['settings']["digitalgain"] = "20"
     config['settings']["turnoff"] = "No"
-    config['settings']["wifi_on_during_recording"] = "Yes"
-    config['settings']["fileminutes"] = "30"
+    config['settings']["wifi_on_during_recording"] = "No"
+    config['settings']["fileminutes"] = "1"
     config['settings']["logfile"] = "logfile.txt"
     print("Writing out a new 'config.ini' file")
     with open('configfilename','w') as cfile:
