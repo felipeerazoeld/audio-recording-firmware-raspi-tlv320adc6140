@@ -1,0 +1,15 @@
+{
+    "HW" : {
+        "i2c_bus" :1,
+        "adc_addr":"0x4c",
+        "debug":"True"
+    },
+    "ADC" : {
+        "CHANNELS":8,
+        "RATE":48000,
+        "FORMAT":"S32_LE",
+        "DURATION":10,
+        "FILEPATH":"./samples",
+        "DEVICE":"hw:3,0,0"
+    }
+}
