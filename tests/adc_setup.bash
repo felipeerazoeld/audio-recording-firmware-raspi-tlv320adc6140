@@ -1,5 +1,15 @@
 #!/bin/sh
 
+. ticktick.sh
+DATA=`cat settings.json`
+tickParse "$DATA"
+
+i2caddr=``HW["adc_addr"]``
+i2cbus=``HW["i2c_bus"]``
+
+echo "i2caddr: $i2caddr"
+echo "i2cbus: $i2cbus"
+
 # Helpers
 r=0
 bin2hex() {
@@ -15,7 +25,7 @@ int2hex() {
 
 nomask=0xff
 sc_set() {
-    i2cset -f -y -m $3 4 0x4c $1 $2
+    i2cset -f -y -m $3 $i2cbus $i2caddr $1 $2
     sleep 0.002
 }
 
@@ -24,7 +34,7 @@ sc_set 0x01 0x01 0x01
 sleep 0.02
 
 # Get wake status
-i2cget -f -y 4 0x4c 0x02
+i2cget -f -y $i2cbus $i2caddr 0x02
 
 # DSP Config
 bin2hex 00001000

@@ -1,8 +1,14 @@
 from smbus import SMBus
-i2c = SMBus(4)
-adc_i2c_address = 0x4c
-debug=True
-
+import json
+# Opening JSON file
+f = open('settings.json')
+data = json.load(f)
+f.close()
+#
+i2c = SMBus(data['HW']['i2c_bus'])
+adc_i2c_address =  data['HW']['adc_addr']
+debug=bool(data['HW']['debug'])
+#
 mp = {
 	"ADCX140_PAGE_SELECT" 		: 0x00,
 	"ADCX140_SW_RESET" 			: 0x01,

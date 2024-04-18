@@ -1,35 +1,22 @@
-#!/bin/bash
+#!/bin/sh
+
+. ticktick.sh
+DATA=`cat settings.json`
+tickParse "$DATA"
+
+i2caddr=``HW["adc_addr"]``
+i2cbus=``HW["i2c_bus"]``
+
 TS=$(date +%Y%m%d_%H%M%SZ)
-#RATE=176400
-RATE="192000"
-#RATE="48000"
-#RATE="96000"
-#RATE="44100"
-#FORMAT="S24_LE"
-#FORMAT="S16_LE"
-FORMAT="S32_LE"
-DURATION="3" #300 sec 5min
-#DURATION="3600" #3600 sec 60min
-#DURATION="10" #10sec
-#DURATION="60" #60sec, 1min
-#DURATION="43200" #12h
-#DURATION="86400" #24h
-#DURATION="259200" #24h*3 #3 days
-#DURATION="604800" #7d
+
+RATE=``ADC["RATE"]``
+FORMAT=``ADC["FORMAT"]``
+DURATION=``ADC["DURATION"]`` #10sec
 #MAXSIZE = 500000
-#CHANNELS="4"
-CHANNELS="8"
-#
-#FILEPATH="/home/ubuntu/bin/focusrite_sound_record"
-#FILEPATH="/media/ubuntu/ssd" # ssd FE
-#FILEPATH="/media/ubuntu/USDSOUND" #cartao 1
-#FILEPATH="/media/ubuntu/D783-02E2" #cartao 2
-#FILEPATH="/home/felipeerazo/Downloads/mic_config/" #teste
-#FILEPATH=/home/root/WS/mic_config/
-FILEPATH=./samples/
+CHANNELS=``ADC["CHANNELS"]``
+FILEPATH=``ADC["FILEPATH"]``
 FILENAME=${FILEPATH}/sample_${RATE}_${FORMAT}_${DURATION}_CH${CHANNELS}_${TS}
 SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )"
-DEVICE="hw:3,0,0"
 
 #LOGFILE=${SCRIPT_DIR}/log/${RATE}_${FORMAT}_${DURATION}_CH${CHANNELS}_${TS}.log
 #if [[ ! -e ${LOGFILE} ]]; then
@@ -44,9 +31,8 @@ DEVICE="hw:3,0,0"
 #else
 #    echo "fine"
 #fi
+DEVICE=``ADC["DEVICE"]``
 #
-echo "arecord -D ${DEVICE} -c ${CHANNELS} --vumeter=mono --rate=${RATE} --format=${FORMAT} --duration=${DURATION} ${FILENAME}.wav"
-
 arecord -D ${DEVICE} -c ${CHANNELS} --vumeter=mono --rate=${RATE} --format=${FORMAT} --duration=${DURATION} ${FILENAME}.wav
 #FILESIZE=$(stat -c%s "$FILENAME.wav")
 #FILESIZE_MB=$(( $( stat -c '%s' $FILENAME.wav ) / 1024 / 1024 ))
