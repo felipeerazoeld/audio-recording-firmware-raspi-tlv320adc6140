@@ -33,6 +33,7 @@ SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )"
 #fi
 DEVICE=``ADC["DEVICE"]``
 #
+echo "arecord -D ${DEVICE} -c ${CHANNELS} --vumeter=mono --rate=${RATE} --format=${FORMAT} --duration=${DURATION} ${FILENAME}.wav"
 arecord -D ${DEVICE} -c ${CHANNELS} --vumeter=mono --rate=${RATE} --format=${FORMAT} --duration=${DURATION} ${FILENAME}.wav
 #FILESIZE=$(stat -c%s "$FILENAME.wav")
 #FILESIZE_MB=$(( $( stat -c '%s' $FILENAME.wav ) / 1024 / 1024 ))
