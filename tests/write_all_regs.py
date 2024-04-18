@@ -5,8 +5,8 @@ f = open('settings.json')
 data = json.load(f)
 f.close()
 #
-i2c = SMBus(data['HW']['i2c_bus'])
-adc_i2c_address =  data['HW']['adc_addr']
+i2c = SMBus(int(data['HW']['i2c_bus']))
+adc_i2c_address =  int(data['HW']['adc_addr'],0)
 debug=bool(data['HW']['debug'])
 #
 mp = {
@@ -130,10 +130,10 @@ i2cwrite("ADCX140_ASI_CFG0"			,0b00110000) #5
 i2cwrite("ADCX140_ASI_CFG1"			,0b00000000) #6
 i2cwrite("ADCX140_ASI_CFG2"			,0b00000000) #7
 
-i2cwrite("ADCX140_ASI_CH1"			,0b00000000) #8
-i2cwrite("ADCX140_ASI_CH2"			,0b00000001) #9
-i2cwrite("ADCX140_ASI_CH3"			,0b00000010) #10
-i2cwrite("ADCX140_ASI_CH4"			,0b00000011) #11
+i2cwrite("ADCX140_ASI_CH1"			,0b00000001) #8
+i2cwrite("ADCX140_ASI_CH2"			,0b00000010) #9
+i2cwrite("ADCX140_ASI_CH3"			,0b00000100) #10
+i2cwrite("ADCX140_ASI_CH4"			,0b00000101) #11
 i2cwrite("ADCX140_ASI_CH5"			,0b00000100) #12
 i2cwrite("ADCX140_ASI_CH6"			,0b00000101) #13
 i2cwrite("ADCX140_ASI_CH7"			,0b00000110) #14
@@ -175,26 +175,26 @@ i2cwrite("ADCX140_INT_LTCH0"		,0b11000000) #34
 i2cwrite("ADCX140_BIAS_CFG"			,0b00000000) #35
 
 i2cwrite("ADCX140_CH1_CFG0"			,0b00100000) #36
-i2cwrite("ADCX140_CH1_CFG1"			,0b10001100) #37
-i2cwrite("ADCX140_CH1_CFG2"			,0b11001101) #38
+i2cwrite("ADCX140_CH1_CFG1"			,0b10010000) #37
+i2cwrite("ADCX140_CH1_CFG2"			,0b11001001) #38
 i2cwrite("ADCX140_CH1_CFG3"			,0b10000000) #39
 i2cwrite("ADCX140_CH1_CFG4"			,0b00000000) #40
 
 i2cwrite("ADCX140_CH2_CFG0"			,0b00100000) #41
-i2cwrite("ADCX140_CH2_CFG1"			,0b10001100) #42
-i2cwrite("ADCX140_CH2_CFG2"			,0b11001101) #43
+i2cwrite("ADCX140_CH2_CFG1"			,0b10010000) #42
+i2cwrite("ADCX140_CH2_CFG2"			,0b11001001) #43
 i2cwrite("ADCX140_CH2_CFG3"			,0b10000000) #44
 i2cwrite("ADCX140_CH2_CFG4"			,0b00000000) #45
 
 i2cwrite("ADCX140_CH3_CFG0"			,0b00100000) #46
-i2cwrite("ADCX140_CH3_CFG1"			,0b10001100) #47
-i2cwrite("ADCX140_CH3_CFG2"			,0b11001101) #48
+i2cwrite("ADCX140_CH3_CFG1"			,0b10010000) #47
+i2cwrite("ADCX140_CH3_CFG2"			,0b11001001) #48
 i2cwrite("ADCX140_CH3_CFG3"			,0b10000000) #49
 i2cwrite("ADCX140_CH3_CFG4"			,0b00000000) #50
 
 i2cwrite("ADCX140_CH4_CFG0"			,0b00100000) #51
-i2cwrite("ADCX140_CH4_CFG1"			,0b10001100) #52
-i2cwrite("ADCX140_CH4_CFG2"			,0b11001101) #53
+i2cwrite("ADCX140_CH4_CFG1"			,0b10010000) #52
+i2cwrite("ADCX140_CH4_CFG2"			,0b11001001) #53
 i2cwrite("ADCX140_CH4_CFG3"			,0b10000000) #54
 i2cwrite("ADCX140_CH4_CFG4"			,0b00000000) #55
 

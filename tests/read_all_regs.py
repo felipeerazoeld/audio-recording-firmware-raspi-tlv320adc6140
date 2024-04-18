@@ -5,8 +5,8 @@ f = open('settings.json')
 data = json.load(f)
 f.close()
 #
-i2c = SMBus(data['HW']['i2c_bus'])
-adc_i2c_address =  data['HW']['adc_addr']
+i2c = SMBus(int(data['HW']['i2c_bus']))
+adc_i2c_address = int( data['HW']['adc_addr'],0)
 debug=bool(data['HW']['debug'])
 #
 mp = {

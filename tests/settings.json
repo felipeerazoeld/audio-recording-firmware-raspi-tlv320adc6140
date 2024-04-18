@@ -6,7 +6,7 @@
     },
     "ADC" : {
         "CHANNELS":8,
-        "RATE":48000,
+        "RATE":192000,
         "FORMAT":"S32_LE",
         "DURATION":10,
         "FILEPATH":"./samples",
