@@ -7,7 +7,7 @@ f.close()
 #
 i2c = SMBus(int(data['HW']['i2c_bus']))
 adc_i2c_address =  int(data['HW']['adc_addr'],0)
-debug=bool(data['HW']['debug'])
+debug=False
 #
 mp = {
 	"ADCX140_PAGE_SELECT" 		: 0x00,
@@ -93,14 +93,18 @@ rmp = {v:k for k, v in mp.items()}
 i2c_current=dict()
 i2c_mod=dict()
 
+
 def addr_txt(num):
     return(rmp[num])
-    
+
+   
 def bin8(dec_num):
-    return "0b"+f"{dec_num:08b}"
+    return("0b"+f"{dec_num:08b}")
+
 
 def addr(st):
     return(mp[st])
+
     
 def i2cwrite(ad, msg):
     #handle ints or string addresses by turning ints to strings
@@ -117,6 +121,7 @@ def i2cwrite(ad, msg):
         del i2c_mod[ad]
         
     return
+
 
 i2cwrite("ADCX140_PAGE_SELECT"		,0b00000000) #1
 

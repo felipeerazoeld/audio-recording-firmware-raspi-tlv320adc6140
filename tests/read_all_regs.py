@@ -92,15 +92,18 @@ mp = {
 rmp = {v:k for k, v in mp.items()}
 i2c_current=dict()
 i2c_mod=dict()
-
+#
 def addr_txt(num):
     return(rmp[num])
     
+
 def bin8(dec_num):
-    return "0b"+f"{dec_num:08b}"
+    return("0b"+f"{dec_num:08b}")
+
 
 def addr(st):
     return(mp[st])
+
 
 def i2cread(ad):
     #handle ints or string addresses by turning ints to strings
@@ -165,6 +168,7 @@ i2cread("ADCX140_INT_CFG" 				) #32
 i2cread("ADCX140_INT_MASK0" 			) #33
 
 i2cread("ADCX140_INT_LTCH0" 			) #34
+i2cread("ADCX140_INT_LTCH0"                     ) #34 readed two time to clear interrrupt flags
 
 i2cread("ADCX140_BIAS_CFG"				) #35
 
