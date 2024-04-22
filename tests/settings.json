@@ -13,6 +13,7 @@
         "FORMAT":"S32_LE",
         "DURATION":10,
         "FILEPATH":"./samples",
-        "DEVICE":"plughw:3,0"
+        "DEVICE":"plughw:3,0",
+        "INPUT_DEV_ID":5
     }
 }
