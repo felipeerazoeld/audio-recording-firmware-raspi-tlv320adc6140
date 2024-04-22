@@ -19,7 +19,7 @@ for i in range(0, numdevices):
 import wave
 
 chunk = 1024  # Record in chunks of 1024 samples
-sample_format = pyaudio.paInt32  # 16 bits per sample
+sample_format = pyaudio.paInt24  # 16 bits per sample paFloat32
 channels = 4
 fs = 192000  # Record at 44100 samples per second
 seconds = 3
@@ -33,7 +33,7 @@ stream = p.open(format=sample_format,
                 channels=channels,
                 rate=fs,
                 frames_per_buffer=chunk,
-                input_device_index=2,
+                input_device_index=4, #TBD: This come from previously printed list Should be a automatic method to get this value
                 input=True)
 
 frames = []  # Initialize array to store frames
