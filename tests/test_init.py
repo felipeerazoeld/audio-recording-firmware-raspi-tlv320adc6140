@@ -33,7 +33,7 @@ stream = p.open(format=sample_format,
                 channels=channels,
                 rate=fs,
                 frames_per_buffer=chunk,
-                input_device_index=4, #TBD: This come from previously printed list Should be a automatic method to get this value
+                input_device_index=int(data['ADC']['INPUT_DEV_ID']), #TBD: This come from previously printed list Should be a automatic method to get this value
                 input=True)
 
 frames = []  # Initialize array to store frames
