@@ -1,7 +1,7 @@
 import sys
 import json
 # Opening JSON file
-f = open('settings.json')
+f = open('./conf/settings.json')
 data = json.load(f)
 f.close()
 #
