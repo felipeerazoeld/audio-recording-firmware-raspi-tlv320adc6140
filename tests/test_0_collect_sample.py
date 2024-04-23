@@ -1,7 +1,7 @@
 import sys
 import json
 # Opening JSON file
-f = open('settings.json')
+f = open('./conf/settings.json')
 data = json.load(f)
 f.close()
 #
@@ -16,6 +16,10 @@ for i in range(0, numdevices):
     if (p.get_device_info_by_host_api_device_index(0, i).get('maxInputChannels')) > 0:
         print("Input Device id ", i, " - ", p.get_device_info_by_host_api_device_index(0, i).get('name'))
 
+import time
+timestr = time.strftime("%Y%m%d-%H%M%S")
+print(timestr)
+
 import wave
 
 chunk = 1024  # Record in chunks of 1024 samples
@@ -23,11 +27,11 @@ sample_format = pyaudio.paInt24  # 16 bits per sample paFloat32
 channels = 4
 fs = 192000  # Record at 44100 samples per second
 seconds = 3
-filename = "output.wav"
+filename = str(data["GLOBAL"]["path_append"])+"/tests/"+str(data["ADC"]["FILEPATH"])+"/"+"sample_"+str(timestr)+".wav"
 
 p = pyaudio.PyAudio()  # Create an interface to PortAudio
 
-print('Recording')
+print('Recording :'+filename)
 
 stream = p.open(format=sample_format,
                 channels=channels,
