@@ -1,19 +1,19 @@
 {
-    "GLOBAL":{
-        "path_append" : "/home/micpc/WS/audio-recording-firmware-raspi-tlv320adc6140/"
-    },    
-    "HW" : {
-        "i2c_bus" :3,
-        "adc_addr":"0x4c",
-        "debug":"True"
+    "GLOBAL": {
+        "path_append": "/home/micpc/WS/audio-recording-firmware-raspi-tlv320adc6140/"
     },
-    "ADC" : {
-        "CHANNELS":4,
-        "RATE":192000,
-        "FORMAT":"S32_LE",
-        "DURATION":10,
-        "FILEPATH":"samples",
-        "DEVICE":"plughw:2,0",
-        "INPUT_DEV_ID":0
+    "HW": {
+        "i2c_bus": 3,
+        "adc_addr": "0x4c",
+        "debug": "True"
+    },
+    "ADC": {
+        "CHANNELS": 4,
+        "RATE": 192000,
+        "FORMAT": "S32_LE",
+        "DURATION": 10,
+        "FILEPATH": "samples",
+        "DEVICE": "plughw:2,0",
+        "INPUT_DEV_ID": "0"
     }
 }
