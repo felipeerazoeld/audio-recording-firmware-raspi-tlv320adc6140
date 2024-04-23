@@ -13,7 +13,7 @@ from smbus import SMBus
 import time
 import json
 
-f = open('settings.json')
+f = open('./conf/settings.json')
 data = json.load(f)
 f.close()
 i2c_address=int(data['HW']['adc_addr'],0)
