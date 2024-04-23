@@ -1,13 +1,14 @@
-Requeriments:
-in X86 arch, 
+#Requeriments:
+#in X86 arch, 
 sudo apt-get install python3-pip python3-pyaudio python3-smbus git i2c-tools
 
-
-and is desired:
+#and is desired:
 sudo apt install alsa-utils
 
-In some SO like debian this command is needed to access i2c bus:
+#In some SO like debian this command is needed to access i2c bus:
 sudo modprobe i2c-dev
+#to make the modprobe permanent add the command to /etc/modules file as showed in
+#https://superuser.com/questions/759426/smbus-i2c-on-a-pcie-bus
 
 #To set i2c bus persmission non-root users:
 #https://askubuntu.com/questions/1273700/enable-spi-and-i2c-on-ubuntu-20-04-raspberry-pi
