@@ -1,7 +1,7 @@
 #!/bin/sh
 
 . ticktick.sh
-DATA=`cat settings.json`
+DATA=`cat ../conf/settings.json`
 tickParse "$DATA"
 
 i2caddr=``HW["adc_addr"]``
