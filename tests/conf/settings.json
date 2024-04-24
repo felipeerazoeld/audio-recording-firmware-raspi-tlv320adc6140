@@ -1,6 +1,7 @@
 {
     "GLOBAL": {
-        "path_append": "/home/micpc/WS/audio-recording-firmware-raspi-tlv320adc6140/"
+        "path_append": "/home/micpc/WS/audio-recording-firmware-raspi-tlv320adc6140/",
+        "EXTERNAL_DRIVE": "/"
     },
     "HW": {
         "i2c_bus": 3,
@@ -15,5 +16,9 @@
         "FILEPATH": "samples",
         "DEVICE": "plughw:2,0",
         "INPUT_DEV_ID": "0"
+    },
+    "TIMMING": {
+        "RECORDING": 10,
+        "PAUSE_INTERVAL": 1
     }
 }
