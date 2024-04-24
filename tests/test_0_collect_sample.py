@@ -9,6 +9,7 @@ f.close()
 sys.path.append(str(data['GLOBAL']['path_append']))
 
 import pyaudio
+import python.wav_fft as wavfft
 
 p = pyaudio.PyAudio()
 info = p.get_host_api_info_by_index(0)
@@ -39,10 +40,14 @@ import wave
 
 chunk = 1024  # Record in chunks of 1024 samples
 sample_format = pyaudio.paInt24  # 16 bits per sample paFloat32
-channels = 4
-fs = 192000  # Record at 44100 samples per second
-seconds = 3
-filename = str(data["GLOBAL"]["path_append"])+"/tests/"+str(data["ADC"]["FILEPATH"])+"/"+"sample_"+str(timestr)+".wav"
+channels =  int(data['ADC']['CHANNELS'])
+fs = int(data['ADC']['RATE'])  # Record at 44100 samples per second
+seconds = int(data['TIMMING']['RECORDING'])
+
+filename_internal_storage = str(data["GLOBAL"]["path_append"])+"/tests/"+str(data["ADC"]["FILEPATH"])+"/"+str(data["ADC"]["RATE"])+"_"+str(data["ADC"]["FORMAT"])+"_"+str(data["TIMMING"]["RECORDING"])+"_"+str(data["ADC"]["CHANNELS"])+"_"+str(timestr)+".wav"
+filename_external_storage = str(data["ADC"]["RATE"])+"/"+str(data["ADC"]["RATE"])+"_"+str(data["ADC"]["FORMAT"])+"_"+str(data["TIMMING"]["RECORDING"])+"_"+str(data["ADC"]["CHANNELS"])+"_"+str(timestr)+".wav"
+
+filename=filename_internal_storage
 
 p = pyaudio.PyAudio()  # Create an interface to PortAudio
 
@@ -52,8 +57,10 @@ stream = p.open(format=sample_format,
                 channels=channels,
                 rate=fs,
                 frames_per_buffer=chunk,
-                input_device_index=int(data['ADC']['INPUT_DEV_ID']), #TBD: This come from previously printed list Should be a automatic method to get this value
                 input=True)
+                
+                #input_device_index=int(data['ADC']['INPUT_DEV_ID']), #TBD: This come from previously printed list Should be a automatic method to get this value
+                #input=True)
 
 frames = []  # Initialize array to store frames
 
@@ -63,8 +70,6 @@ for i in range(0, int(fs / chunk * seconds)):
     frames.append(data)
 
 # Stop and close the stream 
-
-
 stream.stop_stream()
 stream.close()
 # Terminate the PortAudio interface
@@ -80,3 +85,4 @@ wf.setframerate(fs)
 wf.writeframes(b''.join(frames))
 wf.close()
 
+#wavfft.plot(filename)
